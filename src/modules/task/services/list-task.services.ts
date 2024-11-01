@@ -10,8 +10,8 @@ export class ListTaskServices {
   private taskRepository: ITaskRespository;
 
   async execute(): Promise<TaskResponse[] | []> {
-    const task = await this.taskRepository.list();
+    const tasks = await this.taskRepository.list();
 
-    return task;
+    return tasks;
   }
 }

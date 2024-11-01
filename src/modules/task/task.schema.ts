@@ -11,3 +11,7 @@ export const CreateTaskSchema = z.object({
     message: "A data limite da tarefa é um campo obrigátório",
   }),
 });
+
+export const RemoveTaskSchema = z.object({
+  id: z.string({ message: "O id da tarefa deve ser uma string" }),
+});
