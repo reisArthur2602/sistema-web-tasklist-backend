@@ -12,4 +12,7 @@ export type TaskRequest = {
   limitDate: Date;
 };
 
-export interface ITaskRespository {}
+export interface ITaskRespository {
+  create(data: TaskRequest): Promise<TaskResponse>;
+  findByName(name: string): Promise<TaskResponse | null>;
+}
