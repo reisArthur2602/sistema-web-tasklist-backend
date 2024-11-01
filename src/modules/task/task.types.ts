@@ -15,4 +15,5 @@ export type TaskRequest = {
 export interface ITaskRespository {
   create(data: TaskRequest): Promise<TaskResponse>;
   findByName(name: string): Promise<TaskResponse | null>;
+  list(): Promise<TaskResponse[] | []>;
 }

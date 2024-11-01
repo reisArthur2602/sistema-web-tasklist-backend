@@ -10,4 +10,8 @@ export class TaskRepository implements ITaskRespository {
     const task = await prisma.task.create({ data });
     return task;
   }
+  async list(): Promise<TaskResponse[] | []> {
+    const task = await prisma.task.findMany({ orderBy: { sortOrder: "asc" } });
+    return task;
+  }
 }
