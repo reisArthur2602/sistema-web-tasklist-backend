@@ -1,3 +1,4 @@
+import { isPast } from "date-fns";
 import { ConflictError, NotFoundError } from "../../../helpers/errors";
 import { TaskRepository } from "../task.repository";
 import { EditTaskRequest, ITaskRespository, TaskResponse } from "../task.types";
@@ -10,6 +11,15 @@ export class EditTaskServices {
   private taskRepository: ITaskRespository;
 
   async execute(data: EditTaskRequest): Promise<TaskResponse> {
+    
+    if (data.limitDate) {
+      const limitDateIsPast = isPast(data.limitDate);
+
+      if (limitDateIsPast) {
+        throw new ConflictError("A data limite da tarefa deve estar no futuro");
+      }
+    }
+
     const taskExists = await this.taskRepository.findById(data.id);
 
     if (!taskExists)
