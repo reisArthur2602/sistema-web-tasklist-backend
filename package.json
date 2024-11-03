@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "20.16.0"
-  },
+
   "scripts": {
-    
     "dev": "tsx watch src/http/server.ts",
     "build": "tsup src && prisma migrate deploy",
     "start": "node dist/http/server.js"
