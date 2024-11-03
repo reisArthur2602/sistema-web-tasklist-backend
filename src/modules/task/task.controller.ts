@@ -13,6 +13,7 @@ import { ReorderTaskServices } from "./services/reorder-task.services";
 
 export class TaskController {
   async create(request: Request, response: Response) {
+
     const data = CreateTaskSchema.parse(request.body);
 
     const createTaskServices = new CreateTaskServices();
