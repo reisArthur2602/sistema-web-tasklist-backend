@@ -38,3 +38,14 @@ export const EditTaskSchema = z.object({
     })
     .optional(),
 });
+
+const ReorderTask = z.object({
+  id: z
+    .string({ message: "O id da tarefa deve ser uma string" })
+    .min(1, { message: "O id da tarefa é um campo obrigatório" }),
+  sortOrder: z
+    .number({ message: "A ordem de classificação deve ser um número" })
+    .min(1, { message: "A ordem de classificação é um campo obrigatório" }),
+});
+
+export const ReorderTaskSchema = z.array(ReorderTask);

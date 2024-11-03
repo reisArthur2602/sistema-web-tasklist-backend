@@ -1,5 +1,11 @@
 import { prisma } from "../../database/prisma";
-import { EditTaskRequest, ITaskRespository, TaskRequest, TaskResponse } from "./task.types";
+import {
+  EditTaskRequest,
+  ITaskRespository,
+  ReorderTaskRequest,
+  TaskRequest,
+  TaskResponse,
+} from "./task.types";
 
 export class TaskRepository implements ITaskRespository {
   async findByName(name: string): Promise<TaskResponse | null> {
@@ -27,14 +33,13 @@ export class TaskRepository implements ITaskRespository {
     return task;
   }
   async edit(data: EditTaskRequest): Promise<TaskResponse> {
-
-    const { cost, id, limitDate, name } = data;
+    const { cost, id, limitDate, name, sortOrder } = data;
 
     const task = await prisma.task.update({
       where: { id },
-      data: { cost, limitDate, name },
+      data: { cost, limitDate, name, sortOrder },
     });
-    
+
     return task;
   }
 }

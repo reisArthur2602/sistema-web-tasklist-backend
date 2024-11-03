@@ -14,14 +14,14 @@ export const ErrorMiddlware = (
       message: e.message,
     }));
     console.error({ status: 400, message: validationErrors });
-    return response.status(400).json(validationErrors);
+    response.status(400).json(validationErrors);
+  } else {
+    const statusCode = error.statusCode ?? 500;
+
+    const message = error.message ?? "Internal Server Error";
+
+    console.error({ status: error.statusCode, message });
+
+    response.status(statusCode).json({ message });
   }
-
-  const statusCode = error.statusCode ?? 500;
-
-  const message = error.message ?? "Internal Server Error";
-
-  console.error({ status: error.statusCode, message });
-
-  response.status(statusCode).json({ message });
 };

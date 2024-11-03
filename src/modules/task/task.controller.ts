@@ -4,10 +4,12 @@ import {
   CreateTaskSchema,
   EditTaskSchema,
   RemoveTaskSchema,
+  ReorderTaskSchema,
 } from "./task.schema";
 import { ListTaskServices } from "./services/list-task.services";
 import { RemoveTaskServices } from "./services/remove-task.services";
 import { EditTaskServices } from "./services/edit-task.services";
+import { ReorderTaskServices } from "./services/reorder-task.services";
 
 export class TaskController {
   async create(request: Request, response: Response) {
@@ -46,5 +48,16 @@ export class TaskController {
     const task = await editTaskServices.execute(data);
 
     response.status(200).json(task);
+  }
+
+  async reorder(request: Request, response: Response) {
+    
+    const data = ReorderTaskSchema.parse(request.body);
+
+    const reorderTaskServices = new ReorderTaskServices();
+
+     await reorderTaskServices.execute(data);
+
+    response.status(200).json({});
   }
 }

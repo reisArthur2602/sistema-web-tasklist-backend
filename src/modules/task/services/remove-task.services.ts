@@ -1,6 +1,6 @@
 import { NotFoundError } from "../../../helpers/errors";
 import { TaskRepository } from "../task.repository";
-import { ITaskRespository, TaskRequest, TaskResponse } from "../task.types";
+import { ITaskRespository, TaskResponse } from "../task.types";
 
 export class RemoveTaskServices {
   constructor() {

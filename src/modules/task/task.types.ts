@@ -10,12 +10,17 @@ export type EditTaskRequest = {
   name?: string;
   cost?: number;
   limitDate?: Date;
+  sortOrder?: number;
 };
 
 export type TaskRequest = {
   name: string;
   cost: number;
   limitDate: Date;
+};
+export type ReorderTaskRequest = {
+  id: string;
+  sortOrder: number;
 };
 
 export interface ITaskRespository {

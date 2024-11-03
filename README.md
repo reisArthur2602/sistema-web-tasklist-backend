@@ -139,7 +139,7 @@ npm run dev
 ```json
 {
   "id": "4ea6fb9e-ac06-4a1b-9a53-7d3afa0a6403",
-  "name": "Estudar JavaScript",
+  "name": "Estudar React",
   "limitDate": "2024-06-19T00:00:00.000Z",
   "cost": 25,
   "sortOrder": 1
