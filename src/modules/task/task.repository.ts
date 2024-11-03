@@ -7,8 +7,8 @@ import {
 } from "./task.types";
 
 export class TaskRepository implements ITaskRespository {
-  async findByName(name: string): Promise<TaskResponse | null> {
-    const task = await prisma.task.findUnique({ where: { name } });
+  async findByName(userId: string, name: string): Promise<TaskResponse | null> {
+    const task = await prisma.task.findFirst({ where: { userId, name } });
     return task;
   }
 

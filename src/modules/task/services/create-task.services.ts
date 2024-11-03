@@ -10,7 +10,11 @@ export class CreateTaskServices {
   private taskRepository: ITaskRespository;
 
   async execute(data: TaskRequest): Promise<TaskResponse> {
-    const hasTaskWithName = await this.taskRepository.findByName(data.name);
+    
+    const hasTaskWithName = await this.taskRepository.findByName(
+      data.userId,
+      data.name
+    );
 
     if (hasTaskWithName)
       throw new ConflictError("Este nome já está associado a uma tarefa");

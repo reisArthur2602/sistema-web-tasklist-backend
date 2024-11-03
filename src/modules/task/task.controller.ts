@@ -46,10 +46,12 @@ export class TaskController {
 
   async edit(request: Request, response: Response) {
     const data = EditTaskSchema.parse(request.body);
+    
+    const userId = request.userId;
 
     const editTaskServices = new EditTaskServices();
 
-    const task = await editTaskServices.execute(data);
+    const task = await editTaskServices.execute({ ...data, userId });
 
     response.status(200).json(task);
   }

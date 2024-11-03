@@ -8,6 +8,7 @@ export type TaskResponse = {
 };
 export type EditTaskRequest = {
   id: string;
+  userId?: string;
   name?: string;
   cost?: number;
   limitDate?: Date;
@@ -28,8 +29,8 @@ export type ReorderTaskRequest = {
 export interface ITaskRespository {
   create(data: TaskRequest): Promise<TaskResponse>;
   edit(data: EditTaskRequest): Promise<TaskResponse>;
-  list(userId: string): Promise<TaskResponse[] | []>
+  list(userId: string): Promise<TaskResponse[] | []>;
   remove(id: string): Promise<TaskResponse>;
-  findByName(name: string): Promise<TaskResponse | null>;
+  findByName(userId: string, name: string): Promise<TaskResponse | null>;
   findById(id: string): Promise<TaskResponse | null>;
 }
