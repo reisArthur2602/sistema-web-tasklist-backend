@@ -5,8 +5,6 @@ const userRoutes = Router();
 
 export const userController = new UserController();
 
-userRoutes.get("/", (request, response) => {
-  response.json({ message: "true" });
-});
+userRoutes.post("/", userController.create);
 
 export { userRoutes };
