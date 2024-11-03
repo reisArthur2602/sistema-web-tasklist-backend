@@ -3,8 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "20.16.0"
+  },
   "scripts": {
-    "dev": "tsx watch src/http/server.ts"
+    
+    "dev": "tsx watch src/http/server.ts",
+    "build": "tsup src && prisma migrate deploy",
+    "start": "node dist/http/server.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +21,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "express-async-errors": "^3.1.1",
+    "tsup": "^8.3.5",
     "zod": "^3.23.8"
   },
   "devDependencies": {
