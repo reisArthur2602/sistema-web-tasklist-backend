@@ -1,14 +1,15 @@
 import { Router } from "express";
 import { TaskController } from "./task.controller";
+import { AuthenticatedMiddleware } from "../../http/middlewares/authenticated.middleware";
 
 const taskRoutes = Router();
 
 const taskController = new TaskController();
 
-taskRoutes.get("/", taskController.list);
-taskRoutes.post("/", taskController.create);
-taskRoutes.delete("/", taskController.remove);
-taskRoutes.put("/", taskController.edit);
-taskRoutes.patch("/reorder", taskController.reorder);
+taskRoutes.get("/", AuthenticatedMiddleware, taskController.list);
+taskRoutes.post("/", AuthenticatedMiddleware, taskController.create);
+taskRoutes.delete("/", AuthenticatedMiddleware, taskController.remove);
+taskRoutes.put("/", AuthenticatedMiddleware, taskController.edit);
+taskRoutes.patch("/reorder", AuthenticatedMiddleware, taskController.reorder);
 
 export { taskRoutes };
