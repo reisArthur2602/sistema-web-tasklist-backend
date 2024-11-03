@@ -56,7 +56,8 @@ npm run dev
 | <kbd>GET /task</kbd> | Lista todas as tarefas [Detalhes da requisição](#get-task-detail)
 | <kbd>POST /task</kbd> | Cria uma nova tarefa [Detalhes da requisição](#post-task-detail)
 | <kbd>DELETE /task?id=</kbd> | Deleta uma tarefa [Detalhes da requisição](#delete-task-detail)
-| <kbd>PATCH /task</kbd> | Edita uma tarefa [Detalhes da requisição](#patch-task-detail)
+| <kbd>PUT /task</kbd> | Edita uma tarefa [Detalhes da requisição](#put-task-detail)
+| <kbd>PATCH /task/reorder</kbd> | Troca duas tarefas de posição [Detalhes da requisição](#patch-task-detail)
 
 <h3 id="get-task-detail">GET /task</h3>
 
@@ -120,7 +121,7 @@ npm run dev
 }
 ```
 
-<h3 id="patch-task-detail">PATCH /task</h3>
+<h3 id="put-task-detail">PATCH /task</h3>
 
 **REQUEST**
 
@@ -144,4 +145,21 @@ npm run dev
   "cost": 25,
   "sortOrder": 1
 }
+```
+
+<h3 id="patch-task-detail">PATCH /task/reorder</h3>
+
+**REQUEST**
+
+```json
+[
+  {
+    "id": "deaa0e2b-b757-4914-b609-68be1c8c9359",
+    "sortOrder": 18
+  },
+  {
+    "id": "c16a586c-1f02-4cf6-9820-1ecf0f7e36a3",
+    "sortOrder": 16
+  }
+]
 ```
