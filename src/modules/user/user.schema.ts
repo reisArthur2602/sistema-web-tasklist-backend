@@ -6,8 +6,8 @@ export const CreateUserSchema = z.object({
     .min(1, { message: "O email é um campo obrigatório" })
     .email("Insira um formato de email válido")
     .trim(),
-  password: z.string().min(6, {
-    message: "A senha deve ter no mínimo 6 caracteres",
+  password: z.string().min(4, {
+    message: "A senha deve ter no mínimo 4 caracteres",
   }),
 });
 export const SessionUserSchema = z.object({
@@ -16,7 +16,7 @@ export const SessionUserSchema = z.object({
     .min(1, { message: "O email é um campo obrigatório" })
     .email("Insira um formato de email válido")
     .trim(),
-  password: z.string().min(6, {
-    message: "A senha deve ter no mínimo 6 caracteres",
+  password: z.string().min(4, {
+    message: "A senha deve ter no mínimo 4 caracteres",
   }),
 });
