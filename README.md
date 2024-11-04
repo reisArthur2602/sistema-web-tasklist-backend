@@ -36,8 +36,9 @@ git clone https://github.com/reisArthur2602/sistema-web-tasklist-backend
 Use o`.env.example` como referência para criar seu arquivo de configuração `.env` com suas credenciais
 
 ```yaml
-PORT=
-DATABASE_URL= postgresql://janedoe:mypassword@localhost:5432/mydb
+PORT={PORT}
+JWT_SECRET={SECRET_KEY}
+DATABASE_URL="postgresql://janedoe:mypassword@localhost:5432/mydb"
 ```
 
 <h3>Para iniciar o projeto</h3>
