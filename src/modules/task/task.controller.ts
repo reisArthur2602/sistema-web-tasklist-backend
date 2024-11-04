@@ -13,12 +13,13 @@ import { ReorderTaskServices } from "./services/reorder-task.services";
 
 export class TaskController {
   async create(request: Request, response: Response) {
-
     const data = CreateTaskSchema.parse(request.body);
+
+    const userId = request.userId;
 
     const createTaskServices = new CreateTaskServices();
 
-    const task = await createTaskServices.execute(data);
+    const task = await createTaskServices.execute({ ...data, userId });
 
     response.status(201).json(task);
   }
@@ -26,7 +27,9 @@ export class TaskController {
   async list(request: Request, response: Response) {
     const listTaskServices = new ListTaskServices();
 
-    const tasks = await listTaskServices.execute();
+    const userId = request.userId;
+
+    const tasks = await listTaskServices.execute(userId);
 
     response.status(200).json(tasks);
   }
@@ -43,21 +46,22 @@ export class TaskController {
 
   async edit(request: Request, response: Response) {
     const data = EditTaskSchema.parse(request.body);
+    
+    const userId = request.userId;
 
     const editTaskServices = new EditTaskServices();
 
-    const task = await editTaskServices.execute(data);
+    const task = await editTaskServices.execute({ ...data, userId });
 
     response.status(200).json(task);
   }
 
   async reorder(request: Request, response: Response) {
-    
     const data = ReorderTaskSchema.parse(request.body);
 
     const reorderTaskServices = new ReorderTaskServices();
 
-     await reorderTaskServices.execute(data);
+    await reorderTaskServices.execute(data);
 
     response.status(200).json({});
   }

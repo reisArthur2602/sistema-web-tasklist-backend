@@ -10,14 +10,16 @@ export class EditTaskServices {
   private taskRepository: ITaskRespository;
 
   async execute(data: EditTaskRequest): Promise<TaskResponse> {
-   
     const taskExists = await this.taskRepository.findById(data.id);
 
     if (!taskExists)
       throw new NotFoundError("O ID da tarefa não foi encontrado");
 
-    if (data.name) {
-      const hasTaskWithName = await this.taskRepository.findByName(data.name);
+    if (data.name && data.userId) {
+      const hasTaskWithName = await this.taskRepository.findByName(
+        data.userId,
+        data.name
+      );
 
       if (hasTaskWithName && hasTaskWithName.id !== data.id) {
         throw new ConflictError("Este nome já está associado a uma tarefa");

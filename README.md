@@ -3,7 +3,8 @@
 <p align="center">
  <a href="#tech">Tecnologias</a> • 
  <a href="#started">Primeiros passos</a> • 
-  <a href="#routes">API Endpoints</a> 
+  <a href="#user-routes">User Endpoints</a> • 
+  <a href="#task-routes">Task Endpoints</a> 
 </p>
 
 <p align="center">
@@ -48,16 +49,80 @@ npx prisma migrate dev
 npm run dev
 ```
 
-<h2 id="routes">📍 API Endpoints</h2>
+<h2 id="user-routes">📍 User Endpoints</h2>
 
-​
-| Rotas | Descrição  
-|----------------------|-----------------------------------------------------
-| <kbd>GET /task</kbd> | Lista todas as tarefas [Detalhes da requisição](#get-task-detail)
-| <kbd>POST /task</kbd> | Cria uma nova tarefa [Detalhes da requisição](#post-task-detail)
-| <kbd>DELETE /task?id=</kbd> | Deleta uma tarefa [Detalhes da requisição](#delete-task-detail)
-| <kbd>PUT /task</kbd> | Edita uma tarefa [Detalhes da requisição](#put-task-detail)
-| <kbd>PATCH /task/reorder</kbd> | Troca duas tarefas de posição [Detalhes da requisição](#patch-task-detail)
+| Rotas                         | Descrição                                                                     |
+| ----------------------------- | ----------------------------------------------------------------------------- |
+| <kbd>POST /user/session</kbd> | Fazer login do usuário [Detalhes da requisição](#post-session-user-detail)    |
+| <kbd>POST /user</kbd>         | Cria novo usuário [Detalhes da requisição](#post-user-detail)                 |
+| <kbd>GET /user</kbd>          | Buscar dados do usuário logado [Detalhes da requisição](#details-user-detail) |
+
+<h3 id="post-session-user-detail">POST /user/session</h3>
+
+**RESPONSE**
+
+```json
+{
+  "email": "guest@guest.com",
+  "password": "123566"
+}
+```
+
+**REQUEST**
+
+```json
+{
+  "id": "efc328dd-95ce-4b07-bad5-19941c954411",
+  "email": "guest@guest.com",
+  "password": "$2b$10$kmVmcUADEf.VHxvSxVq26.Udi5l6Kj2WVpFtexH4HaQqdllqXl9uC"
+}
+```
+
+<h3 id="post-user-detail">POST /user</h3>
+
+**REQUEST**
+
+```json
+{
+  "email": "guest@guest.com",
+  "password": "123566"
+}
+```
+
+**RESPONSE**
+
+```json
+{
+  "user": {
+    "id": "efc328dd-95ce-4b07-bad5-19941c954411",
+    "email": "guest@guest.com",
+    "password": "$2b$10$kmVmcUADEf.VHxvSxVq26.Udi5l6Kj2WVpFtexH4HaQqdllqXl9uC"
+  },
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzA2NjU5ODcsImV4cCI6MTczMzI1Nzk4Nywic3ViIjoiZWZjMzI4ZGQtOTVjZS00YjA3LWJhZDUtMTk5NDFjOTU0NDExIn0.iGJb3qQxRsrAgZh2HywVG8VSo_m4wA2BKLOVC4I38IQ"
+}
+```
+
+<h3 id="details-user-detail">GET /user</h3>
+
+**REQUEST**
+
+```json
+{
+  "id": "efc328dd-95ce-4b07-bad5-19941c954411",
+  "email": "guest@guest.com",
+  "password": "$2b$10$kmVmcUADEf.VHxvSxVq26.Udi5l6Kj2WVpFtexH4HaQqdllqXl9uC"
+}
+```
+
+<h2 id="task-routes">📍 Task Endpoints</h2>
+
+| Rotas                          | Descrição                                                                       |
+| ------------------------------ | ------------------------------------------------------------------------------- |
+| <kbd>GET /task</kbd>           | Lista todas as tarefas de um usuário [Detalhes da requisição](#get-task-detail) |
+| <kbd>POST /task</kbd>          | Cria uma nova tarefa [Detalhes da requisição](#post-task-detail)                |
+| <kbd>DELETE /task?id=</kbd>    | Deleta uma tarefa [Detalhes da requisição](#delete-task-detail)                 |
+| <kbd>PUT /task</kbd>           | Edita uma tarefa [Detalhes da requisição](#put-task-detail)                     |
+| <kbd>PATCH /task/reorder</kbd> | Troca duas tarefas de posição [Detalhes da requisição](#patch-task-detail)      |
 
 <h3 id="get-task-detail">GET /task</h3>
 
@@ -67,6 +132,7 @@ npm run dev
 [
   {
     "id": "4ea6fb9e-ac06-4a1b-9a53-7d3afa0a6403",
+    "userId": "efc328dd-95ce-4b07-bad5-19941c954411",
     "name": "Estudar JavaScript",
     "limitDate": "2024-10-16",
     "cost": 25,
@@ -92,6 +158,7 @@ npm run dev
 ```json
 {
   "id": "4ea6fb9e-ac06-4a1b-9a53-7d3afa0a6403",
+  "userId": "efc328dd-95ce-4b07-bad5-19941c954411",
   "name": "Estudar JavaScript",
   "limitDate": "2024-06-19T00:00:00.000Z",
   "cost": 25,
@@ -114,6 +181,7 @@ npm run dev
 ```json
 {
   "id": "4ea6fb9e-ac06-4a1b-9a53-7d3afa0a6403",
+  "userId": "efc328dd-95ce-4b07-bad5-19941c954411",
   "name": "Estudar JavaScript",
   "limitDate": "2024-06-19T00:00:00.000Z",
   "cost": 25,
@@ -128,6 +196,7 @@ npm run dev
 ```json
 {
   "id": "4ea6fb9e-ac06-4a1b-9a53-7d3afa0a6403",
+  "userId": "efc328dd-95ce-4b07-bad5-19941c954411",
   "name": "Estudar React",
   "limitDate": "2024-06-19T00:00:00.000Z",
   "cost": 25,
@@ -140,6 +209,7 @@ npm run dev
 ```json
 {
   "id": "4ea6fb9e-ac06-4a1b-9a53-7d3afa0a6403",
+  "userId": "efc328dd-95ce-4b07-bad5-19941c954411",
   "name": "Estudar React",
   "limitDate": "2024-06-19T00:00:00.000Z",
   "cost": 25,
