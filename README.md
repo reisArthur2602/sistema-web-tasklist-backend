@@ -86,7 +86,7 @@ npm run dev
 ```json
 {
   "email": "guest@guest.com",
-  "password": "123566"
+  "password": "12356"
 }
 ```
 
@@ -105,7 +105,7 @@ npm run dev
 
 <h3 id="details-user-detail">GET /user</h3>
 
-**REQUEST**
+**RESPONSE**
 
 ```json
 {
@@ -135,7 +135,7 @@ npm run dev
     "id": "4ea6fb9e-ac06-4a1b-9a53-7d3afa0a6403",
     "userId": "efc328dd-95ce-4b07-bad5-19941c954411",
     "name": "Estudar JavaScript",
-    "limitDate": "2024-10-16",
+    "limitDate": "2024-06-19T00:00:00.000Z",
     "cost": 25,
     "sortOrder": 1
   }
@@ -149,7 +149,7 @@ npm run dev
 ```json
 {
   "name": "Estudar JavaScript",
-  "limitDate": "2024-11-01T00:00:00.000Z",
+  "limitDate": "2024-06-19T00:00:00.000Z",
   "cost": 25
 }
 ```
@@ -190,14 +190,13 @@ npm run dev
 }
 ```
 
-<h3 id="put-task-detail">PATCH /task</h3>
+<h3 id="put-task-detail">PUT /task</h3>
 
 **REQUEST**
 
 ```json
 {
   "id": "4ea6fb9e-ac06-4a1b-9a53-7d3afa0a6403",
-  "userId": "efc328dd-95ce-4b07-bad5-19941c954411",
   "name": "Estudar React",
   "limitDate": "2024-06-19T00:00:00.000Z",
   "cost": 25,
